@@ -21,9 +21,7 @@ body {
   flex-wrap: wrap;
   gap: $day-gap;
   padding: $calendar-padding;
-  width: ($columns * $day-size)
-  + (($columns - 1) * $day-gap)
-  + (2 * $calendar-padding);
+  width: ($columns * $day-size) + (($columns - 1) * $day-gap) + (2 * $calendar-padding);
   box-sizing: border-box;
 
   &__day {
@@ -67,32 +65,22 @@ body {
     }
   }
 
-  // Start day modifier
-  // $days: (
-  //   sun: 0,
-  //   mon: 1,
-  //   tue: 2,
-  //   wed: 3,
-  //   thu: 4,
-  //   fri: 5,
-  //   sat: 6,
-  // );
+  $days: (
+    sun: 0,
+    mon: 1,
+    tue: 2,
+    wed: 3,
+    thu: 4,
+    fri: 5,
+    sat: 6,
+  );
 
-  // @each $name, $index in $days {
-  //   &--start-day-#{$name} {
-  //     .calendar__day:first-child {
-  //       margin-left: ($day-size + $day-gap) * $index;
-  //     }
-  //   }
-  // }
-
-  $start-days: (mon, tue, wed, thu, fri, sat, sun);
-  @each $day in $start-days {
-    $index: index($start-days, $day) - 1;
-    .calendar--start-#{$day} .calendar__day:first-child {
-      margin-left: calc(
-        ($day-size + $day-gap) * #{$index} + ($day-gap * #{$index}) * 2
-      );
+  @each $name, $index in $days {
+    &--start-day-#{$name} {
+      .calendar__day:first-child {
+        margin-left: ($day-size + $day-gap) * $index;
+      }
     }
   }
+
 }
